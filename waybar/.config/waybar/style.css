@@ -1,0 +1,128 @@
+* {
+    font-family: "FiraCode Nerd", "JetbrainsMono Nerd", "Hack Nerd", sans-serif;
+    border: none;
+    border-radius: 0;
+}
+
+window#waybar {
+    border-bottom: 0 solid #ffffff;
+    background: transparent;
+    transition-property: background-color;
+    transition-duration: 0.5s;
+}
+
+#workspaces {
+    background: #24283b;
+    margin: 10px 20px 0;
+    padding: 3px;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #FFF;
+    opacity: 0.8;
+    border: 2px solid #3d59a1;
+}
+
+#workspaces button {
+    padding: 0 5px;
+    margin: 2px 3px;
+    border-radius: 10px;
+    border: 0;
+    color: #FFF;
+    transition: all 0.1s ease-in-out;
+    opacity: 0.5;
+}
+
+#workspaces button.active {
+    color: #FFF;
+    background: #3d59a1;
+    border-radius: 5px;
+    padding: 0 15px;
+    transition: all 0.1s ease-in-out;
+    opacity: 1;
+}
+
+#workspaces button:hover {
+    color: #FFF;
+    background: #000;
+    border-radius: 15px;
+    opacity: 0.4;
+}
+
+#window {
+    background: #24283b;
+    margin: 10px 0 0;
+    padding: 3px 8px;
+    border-radius: 10px;
+    color: #FFF;
+    font-size: 14px;
+    opacity: 0.8;
+    border: 2px solid #3d59a1;
+}
+
+.modules-right {
+    background: #24283b;
+    margin: 10px 20px 0;
+    padding: 5px 2px;
+    border: 2px solid #3d59a1;
+    border-radius: 10px;
+}
+
+#idle_inhibitor {
+    font-size: 16px;
+    font-weight: bold;
+    background: #3d59a1;
+    padding: 2px 10px;
+    opacity: 0.8;
+    color: #FFF;
+    border: 2px solid #3d59a1;
+    border-radius: 10px;
+}
+
+#idle_inhibitor.activated {
+    font-size: 16px;
+    font-weight: bold;
+    opacity: 0.8;
+    color: #FFF;
+}
+
+#pulseaudio {
+    font-size: 16px;
+    background: #9ece6a;
+    padding: 2px 10px;
+    opacity: 0.8;
+    color: #FFF;
+    border: 2px solid #9ece6a;
+    border-radius: 10px;
+}
+
+#network {
+    font-size: 16px;
+    background: #bb9af7;
+    padding: 2px 10px;
+    opacity: 0.8;
+    color: #FFF;
+    border: 2px solid #bb9af7;
+    border-radius: 10px;
+}
+
+#cpu,
+#memory {
+    font-size: 16px;
+    background: #e0af68;
+    padding: 2px 10px;
+    opacity: 0.8;
+    color: #FFF;
+    border: 2px solid #e0af68;
+    border-radius: 10px;
+}
+
+#custom-power {
+    font-size: 16px;
+    background: #f7768e;
+    padding: 2px 10px;
+    opacity: 0.8;
+    color: #FFF;
+    border: 2px solid #f7768e;
+    border-radius: 10px;
+}
+

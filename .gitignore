@@ -1,0 +1,20 @@
+# Ignore OS-specific files
+.DS_Store
+.Trashes
+Icon?
+
+# Ignore temporary and backup files
+*~
+*.swp
+*.swo
+*.tmp
+*.bak
+
+# Ignore compiled files (if any)
+*.pyc
+*.o
+
+# If you use a stow-local override file, ignore it here
+.stow-local-ignore
+
+
