@@ -11,7 +11,7 @@
         "hyprland/window"
     ],
     "modules-center": [
-        "mpd"
+        "custom/spotify"
     ],
     "modules-right": [
         "idle_inhibitor",
@@ -47,6 +47,11 @@
         "format": "{}",
         "max-length": 35,
         "separate-outputs": true
+    },
+    "custom/spotify": {
+        "format": " {}",
+        "exec": "~/.config/waybar/mediaplayer.sh",
+        "exec-if": "pgrep spotify"
     },
     "mpd": {
         "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",

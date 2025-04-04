@@ -110,3 +110,5 @@ alias zshconf="nvim ~/.zshrc"
 alias hyprconf="nvim ~/.config/hypr/hyprland.conf"
 alias nvimconf="nvim ~/.config/nvim/init.lua"
 alias dotfiles="nvim ~/.dotfiles"
+
+. "$HOME/.local/bin/env"

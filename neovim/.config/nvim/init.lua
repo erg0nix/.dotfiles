@@ -60,7 +60,7 @@ require("lazy").setup({
                 filters = { 
                     dotfiles = false,
                     custom = {},
-                    exclude = { "scripts" },
+                    exclude = { "scripts", ".env.*" },
                 },
                 renderer = {
                     icons = {
@@ -135,7 +135,7 @@ require("nvim-treesitter.configs").setup({
 -- Mason & LSP configuration
 require("mason").setup()
 require("mason-lspconfig").setup({
-  ensure_installed = { "lua_ls", "pyright", "rust_analyzer", "ts_ls", "jsonls" },
+  ensure_installed = { "lua_ls", "pyright", "ts_ls", "jsonls" },
   automatic_installation = true,
 })
 
@@ -143,7 +143,6 @@ local lspconfig = require("lspconfig")
 local servers = {
   lua_ls = {},
   pyright = {},
-  rust_analyzer = {},
   ts_ls = {},
   jsonls = {},
 }
@@ -151,6 +150,13 @@ local servers = {
 for server, config in pairs(servers) do
   lspconfig[server].setup(config)
 end
+
+-- Map Ctrl+B to jump to definition
+vim.keymap.set('n', '<C-b>', vim.lsp.buf.definition, { noremap = true, silent = true })
+
+-- Map Ctrl+K to show hover documentation
+vim.keymap.set('n', '<C-k>', vim.lsp.buf.hover, { noremap = true, silent = true })
+
 
 -- Linting
 require("lint").linters_by_ft = {
