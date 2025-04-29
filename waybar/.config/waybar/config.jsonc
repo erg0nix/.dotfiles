@@ -5,6 +5,9 @@
     "style": "~/.config/waybar/style.css",
     "reload_style_on_change": true,
     // "width": 1280, // Waybar width
+    "margin-left": 20,
+    "margin-right": 20,
+    "margin-top": 10,
     "spacing": 4, // Gaps between modules (4px)
     "modules-left": [
         "hyprland/workspaces",
@@ -51,7 +54,7 @@
     "custom/spotify": {
         "format": " {}",
         "exec": "~/.config/waybar/mediaplayer.sh",
-        "exec-if": "pgrep spotify"
+        "interval": 5
     },
     "mpd": {
         "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",

@@ -94,6 +94,9 @@ source $ZSH/oh-my-zsh.sh
 export ROCM_PATH=/opt/rocm
 export HSA_OVERRIDE_GFX_VERSION=11.0.0
 export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/go/bin:$PATH"
+export VISUAL=nvim
+export EDITOR=nvim
 
 # Set personal aliases, overriding those provided by Oh My Zsh libs,
 # plugins, and themes. Aliases can be placed here, though Oh My Zsh

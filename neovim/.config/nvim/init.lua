@@ -116,6 +116,9 @@ require("lazy").setup({
 })
 
 vim.cmd[[colorscheme tokyonight-night]]
+vim.cmd([[ highlight NvimTreeNormal guibg=NONE ctermbg=NONE ]])
+vim.cmd([[ highlight NvimTreeNormalNC guibg=NONE ctermbg=NONE ]])
+vim.cmd([[ highlight NvimTreeEndOfBuffer guibg=NONE ctermbg=NONE ]])
 
 -- Ensure keymaps load after Lazy.nvim initializes
 vim.api.nvim_create_autocmd("User", {
@@ -127,7 +130,7 @@ vim.api.nvim_create_autocmd("User", {
 
 -- Treesitter configuration
 require("nvim-treesitter.configs").setup({
-  ensure_installed = { "lua", "python", "rust", "javascript", "tsx", "json" },
+  ensure_installed = { "lua", "python", "rust", "javascript", "tsx", "json", "go" },
   highlight = { enable = true },
   indent = { enable = true },
 })
@@ -135,7 +138,7 @@ require("nvim-treesitter.configs").setup({
 -- Mason & LSP configuration
 require("mason").setup()
 require("mason-lspconfig").setup({
-  ensure_installed = { "lua_ls", "pyright", "ts_ls", "jsonls" },
+  ensure_installed = { "lua_ls", "pyright", "ts_ls", "jsonls", "gopls" },
   automatic_installation = true,
 })
 
@@ -145,11 +148,28 @@ local servers = {
   pyright = {},
   ts_ls = {},
   jsonls = {},
+  gopls = {},
 }
 
 for server, config in pairs(servers) do
   lspconfig[server].setup(config)
 end
+
+vim.diagnostic.config({
+  virtual_text = {
+    prefix = "●", -- or '■', '▎', etc.
+  },
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+  severity_sort = true,
+})
+
+vim.keymap.set('n', '<leader>e', function()
+  vim.diagnostic.open_float(nil, { focusable = true, border = "rounded" })
+end, { noremap = true, silent = true })
+
+
 
 -- Map Ctrl+B to jump to definition
 vim.keymap.set('n', '<C-b>', vim.lsp.buf.definition, { noremap = true, silent = true })
@@ -166,6 +186,7 @@ require("lint").linters_by_ft = {
   javascript = { "eslint_d" },
   tsx = { "eslint_d" },
   json = { "jsonlint" },
+  go = { "golangcilint" },
 }
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   callback = function()
@@ -182,6 +203,7 @@ require("conform").setup({
     javascript = { "prettier" },
     tsx = { "prettier" },
     json = { "prettier" },
+    go = { "goimports", "gofmt" },
   },
   format_on_save = true,
 })
