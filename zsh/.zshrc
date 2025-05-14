@@ -91,10 +91,17 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch $(uname -m)"
 
+# === ROCm HIP Setup ===
 export ROCM_PATH=/opt/rocm
+export HIP_PATH=/opt/rocm
+export PATH="$ROCM_PATH/bin:$PATH"
 export HSA_OVERRIDE_GFX_VERSION=11.0.0
+
+# === Cargo & Go Paths ===
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
+
+# === Editor Setup ===
 export VISUAL=nvim
 export EDITOR=nvim
 

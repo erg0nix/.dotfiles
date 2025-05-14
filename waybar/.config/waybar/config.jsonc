@@ -1,13 +1,11 @@
 // -*- mode: jsonc -*-
 {
     // "layer": "top", // Waybar at top layer
-    "position": "top",
+    "position": "bottom",
     "style": "~/.config/waybar/style.css",
     "reload_style_on_change": true,
     // "width": 1280, // Waybar width
-    "margin-left": 20,
-    "margin-right": 20,
-    "margin-top": 10,
+    "margin-bottom": 10,
     "spacing": 4, // Gaps between modules (4px)
     "modules-left": [
         "hyprland/workspaces",
