@@ -46,7 +46,9 @@ require("lazy").setup({
         "folke/tokyonight.nvim",
         lazy = false,
         priority = 1000,
-        opts = {},
+        opts = {
+            transparent = true,
+        },
     },
     -- Statusline
     { "nvim-lualine/lualine.nvim" },
