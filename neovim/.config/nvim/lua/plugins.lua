@@ -12,6 +12,15 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	{ "folke/tokyonight.nvim", lazy = false, priority = 1000, opts = { transparent = true } },
+	{
+		name = "orange-soda",
+		dir = vim.fn.stdpath("config") .. "/plugins/orange-soda",
+		lazy = false,
+		priority = 1000,
+		opts = {
+			transparent = true,
+		},
+	},
 	{ "nvim-lualine/lualine.nvim" },
 	{ "nvim-tree/nvim-web-devicons" },
 	{
