@@ -1,0 +1,16 @@
+configuration {
+  modi: "drun";
+  font: "FiraCode Nerd Font 12";
+  show-icons: true;
+  icon-theme: "Papirus";
+  location: 0;
+  fullscreen: false;
+  padding: 20px;
+  fixed-num-lines: true;
+  hide-scrollbar: true;
+  display-drun: " ";
+  drun-display-format: "{icon} {name}";
+}
+
+@theme "orange-soda"
+
