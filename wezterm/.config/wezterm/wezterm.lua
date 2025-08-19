@@ -1,74 +1,72 @@
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
--- Font and appearance
 config.font = wezterm.font("FiraCode Nerd Font")
 config.font_size = 12.0
 
--- Match orange-soda.nvim
 config.colors = {
-	foreground = "#ebdbb2",
-	background = "#1d130e",
-	cursor_bg = "#e6b84a",
-	cursor_fg = "#1d130e",
-	cursor_border = "#e6b84a",
-	selection_fg = "#1d130e",
-	selection_bg = "#e6b84a",
+  foreground = "#E6E1D9",
+  background = "#0F1115",
+  cursor_bg = "#FF7A33",
+  cursor_fg = "#0F1115",
+  cursor_border = "#FF7A33",
+  selection_fg = "#E6E1D9",
+  selection_bg = "#24313A",
 
-	ansi = {
-		"#1d130e", -- black
-		"#d65d0e", -- red
-		"#b85e28", -- green
-		"#e6b84a", -- yellow
-		"#cc7722", -- blue (used loosely)
-		"#da9248", -- magenta (used for folder icons)
-		"#d68a4a", -- cyan
-		"#ebdbb2", -- white
-	},
+  ansi = {
+    "#0F1115",
+    "#FF7A33",
+    "#8BB572",
+    "#E0B467",
+    "#5FA3A3",
+    "#B9814C",
+    "#7FB8B8",
+    "#E6E1D9",
+  },
 
-	brights = {
-		"#665040", -- bright black (comment)
-		"#fc803a", -- bright red (number)
-		"#e07b4f", -- bright green (variable alt)
-		"#fff44f", -- bright yellow (function)
-		"#ffad42", -- bright blue (icon)
-		"#fab387", -- bright magenta (type)
-		"#ffe066", -- bright cyan (escape)
-		"#ebdbb2", -- bright white
-	},
+  brights = {
+    "#6B6F76",
+    "#FF965B",
+    "#A5C98E",
+    "#EAD18E",
+    "#8EC3C3",
+    "#D7B46A",
+    "#A7DADA",
+    "#F2EEE9",
+  },
 
-	tab_bar = {
-		background = "#1d130e",
-		active_tab = {
-			bg_color = "#cc7722",
-			fg_color = "#1d130e",
-		},
-		inactive_tab = {
-			bg_color = "#17100b",
-			fg_color = "#665040",
-		},
-		inactive_tab_hover = {
-			bg_color = "#17100b",
-			fg_color = "#e6b84a",
-		},
-		new_tab = {
-			bg_color = "#1d130e",
-			fg_color = "#e6b84a",
-		},
-	},
+  tab_bar = {
+    background = "#0F1115",
+    active_tab = {
+      bg_color = "#B86A2B",
+      fg_color = "#0F1115",
+    },
+    inactive_tab = {
+      bg_color = "#161A1F",
+      fg_color = "#6B6F76",
+    },
+    inactive_tab_hover = {
+      bg_color = "#161A1F",
+      fg_color = "#E0B467",
+    },
+    new_tab = {
+      bg_color = "#0F1115",
+      fg_color = "#B86A2B",
+    },
+  },
 }
 
--- Window behavior
 config.enable_tab_bar = false
 config.window_decorations = "TITLE | RESIZE"
 config.window_background_opacity = 0.85
 config.macos_window_background_blur = 10
 
 config.window_padding = {
-	left = 8,
-	right = 8,
-	top = 8,
-	bottom = 8,
+  left = 8,
+  right = 8,
+  top = 8,
+  bottom = 8,
 }
 
 return config
+
