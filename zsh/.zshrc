@@ -22,10 +22,13 @@ export HSA_OVERRIDE_GFX_VERSION=11.0.0
 # === Cargo & Go Paths ===
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
+export PATH="$HOME/.npm-global/bin:$PATH"
 
 # === Editor Setup ===
 export VISUAL=nvim
 export EDITOR=nvim
+
+export OLLAMA_MODELS=$HOME/.ollama/models
 
 alias zshconf="nvim ~/.zshrc"
 alias hyprconf="nvim ~/.config/hypr/hyprland.conf"
