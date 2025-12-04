@@ -11,16 +11,14 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-	{ "folke/tokyonight.nvim", lazy = false, priority = 1000, opts = { transparent = true } },
-	{
-		name = "orange-soda",
-		dir = vim.fn.stdpath("config") .. "/plugins/orange-soda",
-		lazy = false,
-		priority = 1000,
-		opts = {
-			transparent = true,
-		},
-	},
+	{ 
+      "catppuccin/nvim",
+      name = "catppuccin",
+      priority = 1000,
+      opts = {
+        transparent_background = true,
+      }
+    },
 	{ "nvim-lualine/lualine.nvim" },
 	{ "nvim-tree/nvim-web-devicons" },
 	{
@@ -47,7 +45,6 @@ require("lazy").setup({
 		},
 	},
 	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
-	{ "neovim/nvim-lspconfig" },
 	{ "williamboman/mason.nvim" },
 	{ "williamboman/mason-lspconfig.nvim" },
 	{ "jay-babu/mason-null-ls.nvim" },
