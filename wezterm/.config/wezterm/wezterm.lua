@@ -5,7 +5,8 @@ config.font = wezterm.font("FiraCode Nerd Font")
 config.font_size = 12.0
 config.line_height = 1.25
 
-config.color_scheme = "Catppuccin Mocha"
+--config.color_scheme = "Catppuccin Mocha"
+config.color_scheme = 'Abernathy'
 
 config.enable_tab_bar = false
 config.window_decorations = "TITLE | RESIZE"
