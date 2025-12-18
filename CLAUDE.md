@@ -9,68 +9,65 @@ This is a personal dotfiles repository managing configuration files for a minima
 ## Active Tools
 
 The repository currently manages configurations for:
-- **neovim** - Primary text editor with LSP, debugging, and language support
+- **neovim** - Primary text editor with LSP and language support (LazyVim-based)
 - **tmux** - Terminal multiplexer with session persistence
 - **wezterm** - Terminal emulator
 - **zsh** - Shell with Oh My Zsh
-- **hypr** - Hyprland window manager (Wayland)
-- **wallpapers** - Desktop wallpapers
+- **hypr** - Hyprland window manager (Wayland) with hypridle and hyprlock
+- **rofi** - Application launcher/menu
+- **wallpapers** - Desktop wallpapers (10+ high-res 5120x1440 images)
 
 ## Theme
 
-**Catppuccin Mocha** is the unified theme across all tools:
-- Neovim (with transparent background)
-- Tmux status bar
-- Wezterm terminal
-- Hyprland borders (gradient: peach to yellow)
+**Kanagawa Dragon** is the primary unified theme across all tools:
+- **Neovim** - Kanagawa Dragon
+- **Tmux** - Kanagawa Dragon (via tmux-kanagawa plugin)
+- **Wezterm** - Kanagawa Dragon (Gogh)
+- **Hyprland borders** - Custom gradient (muted pumpkin #cc7722 → golden yellow #e6b84a)
+- **Hyprlock** - Catppuccin Mocha (modified mauve #bb9af7)
+- **Rofi** - Catppuccin Mocha with transparency
+
+**Fonts:**
+- JetBrainsMono Nerd Font (primary: Wezterm, Hyprlock, Hyprland)
+- Inter font (Rofi)
+- Ubuntu Nerd Font (Rofi icons)
 
 ## Neovim Configuration
 
 ### Architecture
-- **Entry point**: `neovim/.config/nvim/init.lua`
-- **Core config**: `neovim/.config/nvim/lua/` (settings.lua, keymaps.lua, plugins.lua)
-- **Plugin configs**: `neovim/.config/nvim/after/plugin/` (lsp.lua, cmp.lua, dap.lua, etc.)
+**LazyVim-based configuration** with custom overrides:
+- **Entry point**: `neovim/.config/nvim/init.lua` (minimal, loads LazyVim)
+- **Core config**: `neovim/.config/nvim/lua/config/` (lazy.lua, options.lua, keymaps.lua, autocmds.lua)
+- **Plugin overrides**: `neovim/.config/nvim/lua/plugins/` (colorscheme.lua, dashboard.lua)
+- **Theme customization**: `neovim/.config/nvim/after/plugin/theme.lua` (transparency for NvimTree)
 - **Plugin manager**: Lazy.nvim (auto-bootstraps on first run)
+- **Plugin lockfile**: `lazy-lock.json` (pin plugin versions)
 
 ### LSP Setup
-Uses **native vim.lsp.config** (Neovim 0.11+, no nvim-lspconfig plugin). LSP servers configured in `after/plugin/lsp.lua:5-52`:
-- `lua_ls` - Lua language server (with vim globals)
-- `pyright` - Python language server
-- `ts_ls` - TypeScript/JavaScript language server
-- `jsonls` - JSON language server
-- `gopls` - Go language server (with analyses: unusedparams, shadow, staticcheck)
+Uses **nvim-lspconfig** via LazyVim defaults with **Mason** for automatic LSP server installation. Language servers are managed through Mason, not manually installed. Configured for:
+- Lua (with vim globals)
+- Python
+- TypeScript/JavaScript
+- JSON
+- Go
 
-Each server is configured with:
-- `cmd` - Command to start the LSP server
-- `filetypes` - File types the server should handle
-- `root_markers` - Files that indicate the project root
-- `settings` - Server-specific settings
-
-LSP servers must be installed manually on the system (e.g., via `npm install -g`, `go install`, etc.).
-
-### Key Plugins
-- **Theme**: catppuccin/nvim (transparent background enabled)
-- **Completion**: nvim-cmp (sources: LSP, buffer, path, cmdline) + LuaSnip
-- **File navigation**: nvim-tree, telescope.nvim (with fzf-native)
+### Key Plugins (from LazyVim)
+- **Theme**: Kanagawa Dragon
+- **Completion**: blink.cmp (sources: LSP, buffer, path) + LuaSnip
+- **File navigation**: Telescope.nvim (with fzf-native)
 - **Syntax**: nvim-treesitter
 - **Formatting**: conform.nvim
 - **Linting**: nvim-lint
-- **Debugging**: nvim-dap, nvim-dap-ui, nvim-dap-go
-- **Rust**: rustaceanvim, rust.vim
+- **LSP**: nvim-lspconfig + Mason + Mason-lspconfig
 - **Diagnostics**: Trouble.nvim
-- **UI**: lualine, nvim-web-devicons
-
-### Key Keybindings
-- `<C-n>` - Toggle file tree
-- `<leader>ff` - Find files (Telescope)
-- `<leader>fg` - Live grep
-- `<leader>e` - Open diagnostic float
-- `<C-b>` - Go to definition
-- `<C-k>` - Hover documentation
-- `<leader>xx` - Toggle diagnostics (Trouble)
+- **UI**: lualine, noice.nvim, nvim-web-devicons
+- **Git**: gitsigns.nvim
+- **Motion**: flash.nvim
 
 ### Plugin Management
-Update plugins: Open Neovim and run `:Lazy sync`
+- Update plugins: `:Lazy sync`
+- Update LSP servers: `:Mason`
+- Check health: `:checkhealth`
 
 ## Tmux Configuration
 
@@ -82,11 +79,11 @@ Update plugins: Open Neovim and run `:Lazy sync`
 
 ### Plugins (TPM)
 - `tmux-plugins/tmux-resurrect` - Session persistence
-- `catppuccin/tmux#v2.1.3` - Theme (Mocha flavor)
+- `Nybkox/tmux-kanagawa` - Theme (dragon variant)
 
-Additional modules loaded:
-- `tmux-cpu` - CPU status in status bar
-- `tmux-battery` - Battery status
+Theme configuration:
+- `@kanagawa-theme 'dragon'` - Dark variant
+- `@kanagawa-ignore-window-colors true` - Preserve terminal colors
 
 ### Installing/Updating Plugins
 Press `Ctrl-a` + `I` (uppercase i) inside tmux
@@ -99,7 +96,7 @@ Press `Ctrl-a` + `I` (uppercase i) inside tmux
 - `y` in copy mode - Copy to system clipboard (macOS: pbcopy, Linux: wl-copy/xclip)
 
 ### Status Bar
-Right side shows: application | cpu | session | uptime | battery
+Kanagawa Dragon theme with standard tmux status information
 
 ## Shell Configuration (Zsh)
 
@@ -121,27 +118,58 @@ Right side shows: application | cpu | session | uptime | battery
 - `nvimconf` - Edit Neovim init.lua
 - `dotfiles` - Open dotfiles in Neovim
 
+### Additional Paths
+- **Ollama models**: `~/.ollama/models` (custom location)
+
+## Rofi Configuration
+
+Application launcher with custom styling:
+- **Config**: `rofi/.config/rofi/config.rasi`
+- **Theme**: Kanagawa Dragon colors (no transparency)
+- **Window**: 800x550px, 1.75px border, 12px radius, opaque background
+- **Fonts**: Inter Medium (text), Ubuntu Nerd Font (icons)
+- **Colors**:
+  - Background: #181616 (dragonBlack3)
+  - Text: #c5c9c5 (dragonWhite)
+  - Selected: #435965 (dragonBlue5)
+  - Hover: #1D1C19 (dragonBlack2)
+  - Border: #625e5a (dragonBlack6)
+- **Features**:
+  - Clean input bar with bottom border
+  - 7 visible list items with icons
+  - Footer with keyboard shortcuts (H/J/K/L vim navigation hints)
+  - Launcher shows: application icon + name
+- **Launch**: `rofi -show drun -theme ~/.config/rofi/config.rasi` or `Super+Space` in Hyprland
+
 ## Wezterm Configuration
 
 Minimal terminal emulator setup:
-- **Font**: FiraCode Nerd Font (size 12)
-- **Theme**: Catppuccin Mocha
-- **Opacity**: 85% with 10px macOS blur
+- **Font**: JetBrainsMono Nerd Font Mono (size 12, line height 1.25)
+- **Font features**: Ligatures disabled (calt=0, clig=0, liga=0)
+- **Theme**: Kanagawa Dragon (Gogh)
+- **Window decorations**: TITLE | RESIZE
+- **macOS blur**: 10px
 - **Tab bar**: Disabled
 - **Padding**: 8px all sides
 
 ## Hyprland Configuration
 
 ### Display
-- Monitor: DP-2 (preferred resolution, auto-position)
-- Gaps: 5px inner, 20px outer
-- Border: 2px with Catppuccin-inspired gradient
-- Rounding: 2px
+- **Monitor**: DP-2 (preferred resolution, auto-position)
+- **Gaps**: 5px inner, 20px outer
+- **Border**: 2px with custom gradient (rgba(cc7722ff) → rgba(e6b84aff))
+- **Rounding**: 2px
+- **Layout**: Dwindle
 
 ### Key Programs
-- Terminal: `wezterm`
-- File manager: `nautilus`
-- Menu: `rofi` (Wayland mode)
+- **Terminal**: `wezterm`
+- **File manager**: `nautilus`
+- **Menu**: `rofi -show drun` (Wayland mode)
+
+### Autostart
+- `waybar` - Status bar
+- `hypridle` - Idle management daemon
+- `mpd` - Music Player Daemon
 
 ### Keybindings (Super key)
 - `Super+Q` - Terminal
@@ -152,6 +180,16 @@ Minimal terminal emulator setup:
 - `Super+H/J/K/L` - Vim-style navigation
 - `Super+Shift+L` - Lock screen (hyprlock)
 
+### Idle Management (Hypridle)
+- Lock screen after 10 minutes (600s)
+- Before sleep: lock session
+- After sleep: restore screen (dpms on)
+
+### Screen Lock (Hyprlock)
+- Font: JetBrainsMono Nerd Font
+- Colors: Catppuccin Mocha (modified mauve #bb9af7)
+- Background: Screenshot blur (3 passes, size 7)
+
 ## Development Environment
 
 ### Language Support
@@ -159,13 +197,23 @@ Configured for: **Lua, Python, Rust, Go, JavaScript/TypeScript, JSON**
 
 ### Required Tools
 - `git` - Version control
-- `nvim` - Text editor
+- `nvim` (0.10+) - Text editor
 - `tmux` - Terminal multiplexer
-- `wezterm` - Terminal
+- `wezterm` - Terminal emulator
+- `hyprland` - Window manager (Wayland)
+- `rofi` - Application launcher
+- `waybar` - Status bar
+- `hypridle` - Idle daemon
+- `hyprlock` - Screen locker
 - `make` - Build system (for telescope-fzf-native)
-- LSP servers (lua-language-server, pyright, typescript-language-server, gopls, etc.)
-- Formatters (stylua, black, rustfmt, prettier, gofmt)
-- Linters (luacheck, ruff, clippy, eslint_d, golangcilint)
+- `fd` - Fast file finder (optional, for Telescope)
+- `ripgrep` - Fast text search (optional, for Telescope)
+
+### LSP/Formatting/Linting
+Managed automatically via **Mason** in Neovim:
+- LSP servers install on demand
+- Formatters: stylua, black, prettier, gofmt, rustfmt
+- Linters: luacheck, ruff, eslint_d, golangcilint
 
 ### Platform Support
 - Primary: macOS (Homebrew integration, pbcopy)
@@ -178,6 +226,7 @@ Uses conventional commit style:
 - `fix:` - Bug fixes
 - `style:` - Styling/theme updates
 - `refactor:` - Code restructuring
+- `wip:` - Work in progress
 
 Main branch: `main`
 
@@ -188,11 +237,16 @@ No automated setup script is provided. The `.gitignore` references `.stow-local-
 To deploy:
 1. Clone repository to `~/.dotfiles`
 2. Initialize git submodules: `git submodule update --init --recursive`
-3. Use GNU Stow: `stow neovim tmux zsh wezterm hypr` (from repo root)
+3. Use GNU Stow: `stow neovim tmux zsh wezterm hypr rofi wallpapers` (from repo root)
    - Or manually symlink directories to home directory
-4. Install TPM for tmux: Already in submodules
+4. Install TPM for tmux: Already in submodules, press `Ctrl-a` + `I` in tmux
 5. Install Lazy.nvim for Neovim: Auto-bootstraps on first run
-6. Install LSP servers manually (no Mason)
+6. Install LSP servers: Open Neovim and run `:Mason` to install language servers
+
+### Git Submodules
+- `tmux/.tmux/plugins/tpm` - Tmux Plugin Manager
+- `tmux/.tmux/plugins/tmux-resurrect` - Session persistence
+- `tmux/.tmux/plugins/catppuccin/tmux` - Legacy theme (not currently used)
 
 ## Lua Development
 

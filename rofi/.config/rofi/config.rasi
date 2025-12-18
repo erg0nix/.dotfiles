@@ -1,0 +1,295 @@
+/* ________Variables________ */
+* {
+    /* ________Window________ */
+    window-width: 800px;
+    window-height: 550px;
+    window-border: 1.75px;
+    window-border-color: #625e5a;
+    window-border-radius: 12px;
+    window-bg-color: #181616;
+
+
+    bg-col-light: #1D1C19;
+    selected-col: #2d4f67;
+    blue: #658594;
+    fg-col: #c5c9c5;
+    fg-col2: #c4746e;
+    grey: #7a8382;
+
+}
+/* ________Main window________ */
+window {
+    width: @window-width;
+    // height: @window-height;
+    border: @window-border;
+    border-color: @window-border-color;
+    background-color: @window-bg-color;
+    border-radius: @window-border-radius;
+}
+
+/* ________Main view inside the window________ */
+mainbox {
+    background-color: transparent;
+    children: [inputbar, listview, footer];
+}
+
+spacer {
+    str: "";
+    expand: true;
+    background-color: transparent;
+}
+
+textbox-separator {
+    str: "|";
+    expand: true;
+    background-color: transparent;
+    margin: 0 6px;
+    font: "Inter Bold 14px";
+    vertical-align: 0.5;
+    text-color: #7a8382;
+}
+
+keys-info {
+    children: [
+                // Launch
+                textbox-return-text, textbox-return-icon,
+                textbox-separator,
+
+                // Left
+                textbox-left-text, textbox-command-icon, textbox-left-icon,
+                textbox-separator,
+
+                // Down
+                textbox-down-text, textbox-command-icon, textbox-down-icon,
+                textbox-separator,
+
+                // Up
+                textbox-up-text, textbox-command-icon, textbox-up-icon,
+                textbox-separator,
+
+                // Right
+                textbox-right-text, textbox-command-icon, textbox-right-icon];
+
+    expand: false;
+    vertical-align: 0.5;
+    orientation: horizontal;
+    spacing: 2px;
+    background-color: transparent;
+}
+
+textbox-return-text {
+    str: "Launch";
+    expand: false;
+    text-color: #c5c9c5;
+    font: "Inter Medium 14px";
+    vertical-align: 0.5;
+    padding: 0 4px;
+    border-radius: 4px;
+    background-color: transparent;
+}
+
+textbox-return-icon {
+    str: "󰌑";
+    expand: false;
+    text-color: #a6a69c;
+    font: "Ubuntu Nerd Font 16px";
+    vertical-align: 0.5;
+    margin: 8px 0;
+    padding: 0 4px;
+    border-radius: 4px;
+    background-color: #393836;
+}
+
+textbox-command-icon {
+    str: "󰘳";
+    expand: false;
+    text-color: #c5c9c5;
+    font: "Ubuntu Nerd Font 16px";
+    vertical-align: 0.5;
+    margin: 8px 0;
+    padding: 0 4px;
+    border-radius: 4px;
+    background-color: #393836;
+}
+
+textbox-down-text {
+    str: "";
+    expand: false;
+    text-color: #c5c9c5;
+    font: "Ubuntu Nerd Font 14px";
+    vertical-align: 0.5;
+    border-radius: 4px;
+    background-color: transparent;
+}
+
+
+textbox-down-icon {
+    str: "J";
+    expand: false;
+    text-color: #c5c9c5;
+    font: "Inter Medium 16px";
+    vertical-align: 0.5;
+    margin: 8px 0;
+    padding: 0 4px;
+    border-radius: 4px;
+    background-color: #393836;
+}
+
+textbox-up-text {
+    str: "";
+    expand: false;
+    text-color: #c5c9c5;
+    font: "Ubuntu Nerd Font 14px";
+    vertical-align: 0.5;
+    border-radius: 4px;
+    background-color: transparent;
+}
+
+
+textbox-up-icon {
+    str: "K";
+    expand: false;
+    text-color: #c5c9c5;
+    font: "Inter Medium 16px";
+    vertical-align: 0.5;
+    margin: 8px 0;
+    padding: 0 4px;
+    border-radius: 4px;
+    background-color: #393836;
+}
+textbox-left-text {
+    str: "";
+    expand: false;
+    text-color: #c5c9c5;
+    font: "Ubuntu Nerd Font 14px";
+    vertical-align: 0.5;
+    border-radius: 4px;
+    background-color: transparent;
+}
+
+
+textbox-left-icon {
+    str: "H";
+    expand: false;
+    text-color: #c5c9c5;
+    font: "Inter Medium 16px";
+    vertical-align: 0.5;
+    margin: 8px 0;
+    padding: 0 4px;
+    border-radius: 4px;
+    background-color: #393836;
+}
+textbox-right-text {
+    str: "";
+    expand: false;
+    text-color: #c5c9c5;
+    font: "Ubuntu Nerd Font 14px";
+    vertical-align: 0.5;
+    border-radius: 4px;
+    background-color: transparent;
+}
+
+
+textbox-right-icon {
+    str: "L";
+    expand: false;
+    text-color: #c5c9c5;
+    font: "Inter Medium 16px";
+    vertical-align: 0.5;
+    margin: 8px 0;
+    padding: 0 4px;
+    border-radius: 4px;
+    background-color: #393836;
+}
+
+footer {
+    children: [spacer, keys-info];
+    expand:false;
+    orientation: horizontal;
+    padding: 5px 10px;
+    background-color: #1D1C19;
+
+    border-color: #625e5a;
+
+    border: 2px 0 0 0;
+}
+
+textbox {
+    expand: false;
+    str: "Application";
+    background-color: transparent;
+
+    text-color: #7a8382;
+    font: "Inter Medium 14px";
+    vertical-align: 0.5;
+}
+
+inputbar {
+    children: [entry];
+    background-color: transparent;
+    border-color: #c4b28a;
+}
+
+entry {
+    placeholder-color: #7a8382;
+    padding: 18px 14px;
+    text-color: #c5c9c5;
+    border-color: #625e5a;
+    border: 0 0 2px 0;
+    background-color: transparent;
+}
+
+prompt {
+    text-color: #c5c9c5;
+}
+
+
+
+
+listview {
+    padding: 6px;
+    lines: 7;
+    spacing: 5px;
+    background-color: transparent;
+}
+
+element {
+    padding: 12px;
+    border-radius: 8px;
+    border: 0;
+    background-color: transparent;
+    text-color: #c5c9c5;
+    spacing: 10px;
+    children: [group, textbox];
+}
+
+
+group {
+background-color: transparent;
+    orientation: horizontal;
+    spacing: 10px;
+    children: [element-icon, element-text];
+}
+
+element hover {
+    background-color: #1D1C19;
+    text-color: #c5c9c5;
+}
+
+element-icon {
+    size: 30px;
+    background-color: transparent;
+}
+
+
+element-text {
+    font: "Inter Medium 16px";
+    vertical-align: 0.5;
+    text-color: #c5c9c5;
+    background-color: transparent;
+}
+
+element selected {
+    background-color: #393836;
+    text-color: #c5c9c5;
+}
